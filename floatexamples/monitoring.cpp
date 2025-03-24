@@ -15,10 +15,6 @@ int main() {
 
     // Define compound datatype
     CompType datatype(sizeof(EnvData));
-    // datatype.insertMember("Site Name", HOFFSET(EnvData, site_name), StrType(PredType::C_S1, 20));
-    // datatype.insertMember("Air Quality Index", HOFFSET(EnvData, aqi), PredType::NATIVE_FLOAT);
-    // datatype.insertMember("Temperature", HOFFSET(EnvData, temp), PredType::NATIVE_DOUBLE);
-    // datatype.insertMember("Sample Count", HOFFSET(EnvData, sample_count), PredType::NATIVE_INT);
     datatype.insertMember("siteName", HOFFSET(EnvData, site_name), StrType(PredType::C_S1, 20));
     datatype.insertMember("airQualityIndex", HOFFSET(EnvData, aqi), PredType::NATIVE_FLOAT);
     datatype.insertMember("temperature", HOFFSET(EnvData, temp), PredType::NATIVE_DOUBLE);
