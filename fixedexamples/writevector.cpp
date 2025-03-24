@@ -6,8 +6,8 @@
 
 using namespace H5;
 
-const H5std_string FILE_NAME("randomints.h5");
-const H5std_string DATASET_NAME("temperature");
+const H5std_string FILE_NAME("vector.h5");
+const H5std_string DATASET_NAME("vector");
 const H5std_string ATTRIBUTE_NAME("GIT root revision");
 const uint32_t NUM_RECORDS = 100;
 

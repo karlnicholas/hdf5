@@ -14,7 +14,7 @@ int main() {
 
     try {
         // Create a new HDF5 file (overwrites if it already exists)
-        H5File file("scalar_data.h5", H5F_ACC_TRUNC);
+        H5File file("scalar.h5", H5F_ACC_TRUNC);
 
         // Define the dataspace for a scalar (single value)
         hsize_t dims[1] = {1}; // Scalar is a 1-element dataset
