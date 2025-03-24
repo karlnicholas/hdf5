@@ -4,8 +4,6 @@
 #include <random>
 #include <limits>
 
-const hsize_t NUM_RECORDS = 1000;
-
 template <typename T>
 T getCycledValue(int index, T minValue, T maxValue) {
     constexpr int cycleLength = 10;
