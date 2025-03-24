@@ -5,7 +5,7 @@
             "intelliSenseMode": "gcc-x64",
             "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
             "includePath": [
-                "C:/Users/karln/projects/hdf5/compoundorig/**",
+                "C:/Users/karln/projects/hdf5/compoundexamples/**",
                 "C:/msys64/mingw64/include/**"
             ],
             "defines": [
