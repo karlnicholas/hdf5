@@ -1,30 +1,9 @@
+#include "common.h"
 #include <stdio.h>
-#include <hdf5.h>
 #include <string.h>
 #include <stdlib.h>
 #include <limits.h>
 #include <time.h>
-
-#define FILENAME "compound_example.h5"
-#define DATASETNAME "CompoundData"
-#define NUM_RECORDS 1000
-
-struct Record {
-    uint64_t recordId;
-    char fixedStr[10];
-    hvl_t varStr; // Variable-length string
-    float floatVal;
-    double doubleVal;
-    int8_t int8_Val;
-    uint8_t uint8_Val;
-    int16_t int16_Val;
-    uint16_t uint16_Val;
-    int32_t int32_Val;
-    uint32_t uint32_Val;
-    int64_t int64_Val;
-    uint64_t uint64_Val;
-    uint64_t bitfieldVal;
-};
 
 int64_t getCycledValue(int index, int64_t minValue, int64_t maxValue, int isSigned) {
     const int cycleLength = 10;
@@ -53,7 +32,7 @@ int main() {
     H5Tset_size(fixed_str_type, 10);
     H5Tset_strpad(fixed_str_type, H5T_STR_NULLTERM);
     H5Tinsert(compound_type, "fixedStr", HOFFSET(struct Record, fixedStr), fixed_str_type);
-    hid_t var_str_type = H5Tvlen_create(H5T_C_S1); // Variable-length type
+    hid_t var_str_type = H5Tvlen_create(H5T_C_S1);
     H5Tinsert(compound_type, "varStr", HOFFSET(struct Record, varStr), var_str_type);
     H5Tinsert(compound_type, "floatVal", HOFFSET(struct Record, floatVal), H5T_NATIVE_FLOAT);
     H5Tinsert(compound_type, "doubleVal", HOFFSET(struct Record, doubleVal), H5T_NATIVE_DOUBLE);
@@ -93,13 +72,13 @@ int main() {
         return 1;
     }
 
-    srand(time(NULL)); // Seed random number generator
+    srand(time(NULL));
     for (size_t i = 0; i < NUM_RECORDS; ++i) {
         records[i].recordId = 1000 + i;
         strcpy(records[i].fixedStr, "FixedData");
 
-        char temp[32]; // Buffer for varStr (max "varData:1900" is 12 chars + null)
-        int randNum = rand() % 1900 + 1; // 1 to 1900
+        char temp[32];
+        int randNum = rand() % 1900 + 1;
         snprintf(temp, sizeof(temp), "varData:%d", randNum);
         records[i].varStr.len = strlen(temp);
         records[i].varStr.p = malloc(records[i].varStr.len + 1);
@@ -122,7 +101,7 @@ int main() {
 
     H5Tclose(compound_type);
     H5Tclose(fixed_str_type);
-    H5Tclose(var_str_type); // Reclaims varStr memory
+    H5Tclose(var_str_type);
     H5Tclose(bitfield_type);
     H5Dclose(dataset_id);
     H5Sclose(dataspace_id);

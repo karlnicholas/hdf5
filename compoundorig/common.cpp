@@ -1,23 +1,19 @@
-#include "common.h"
+#include "common_cpp.h"
 
 // Define constants
-const H5std_string FILE_NAME("compound_example.h5");
-const H5std_string DATASET_NAME("CompoundData");
+const H5std_string FILE_NAME(FILENAME);
+const H5std_string DATASET_NAME(DATASETNAME);
 const H5std_string ATTRIBUTE_NAME("GIT root revision");
 
-// Function to create the compound type
 CompType createCompoundType() {
     CompType compound_type(sizeof(Record));
     
     compound_type.insertMember("recordId", HOFFSET(Record, recordId), PredType::NATIVE_UINT64);
-    
     StrType fixed_str_type(PredType::C_S1, 10);
-    fixed_str_type.setStrpad(H5T_STR_NULLTERM); // Match C’s null-terminated padding
+    fixed_str_type.setStrpad(H5T_STR_NULLTERM);
     compound_type.insertMember("fixedStr", HOFFSET(Record, fixedStr), fixed_str_type);
-    
     VarLenType var_str_type(PredType::C_S1);
     compound_type.insertMember("varStr", HOFFSET(Record, varStr), var_str_type);
-    
     compound_type.insertMember("floatVal", HOFFSET(Record, floatVal), PredType::NATIVE_FLOAT);
     compound_type.insertMember("doubleVal", HOFFSET(Record, doubleVal), PredType::NATIVE_DOUBLE);
     compound_type.insertMember("int8_Val", HOFFSET(Record, int8_Val), PredType::NATIVE_INT8);
@@ -28,7 +24,6 @@ CompType createCompoundType() {
     compound_type.insertMember("uint32_Val", HOFFSET(Record, uint32_Val), PredType::NATIVE_UINT32);
     compound_type.insertMember("int64_Val", HOFFSET(Record, int64_Val), PredType::NATIVE_INT64);
     compound_type.insertMember("uint64_Val", HOFFSET(Record, uint64_Val), PredType::NATIVE_UINT64);
-    
     IntType bitfield_type(PredType::NATIVE_UINT64);
     bitfield_type.setPrecision(57);
     bitfield_type.setOffset(7);

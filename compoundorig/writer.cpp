@@ -1,10 +1,10 @@
-#include "common.h"
+#include "common_cpp.h"
 #include <iostream>
 #include <cstring>
 #include <random>
 #include <limits>
 
-const hsize_t NUM_RECORDS = 1000; // Adjust value as needed
+const hsize_t NUM_RECORDS = 1000;
 
 template <typename T>
 T getCycledValue(int index, T minValue, T maxValue) {
@@ -32,13 +32,6 @@ int main() {
         hsize_t dims[1] = {NUM_RECORDS};
         DataSpace dataspace(1, dims);
         DataSet dataset = file.createDataSet(DATASET_NAME, compound_type, dataspace);
-
-        // H5std_string attribute_value = "Revision: , URL: ";
-        // StrType attr_type(PredType::C_S1, attribute_value.size());
-        // DataSpace attr_space(H5S_SCALAR);
-        // Attribute attribute = dataset.createAttribute(ATTRIBUTE_NAME, attr_type, attr_space);
-        // attribute.write(attr_type, attribute_value);
-        // attribute.close();
 
         std::vector<Record> records(NUM_RECORDS);
         std::vector<std::string> varStrings(NUM_RECORDS);

@@ -1,5 +1,4 @@
-// reader.cpp
-#include "common.h"
+#include "common_cpp.h"
 #include <iostream>
 #include <iomanip>
 
@@ -34,7 +33,6 @@ int main() {
             std::cout << "  fixedStr: " << records[i].fixedStr << "\n";
             std::cout << "  varStr: ";
             if (records[i].varStr.p != nullptr && records[i].varStr.len > 0) {
-                // Print only the valid length, avoiding garbage
                 std::cout.write(static_cast<char*>(records[i].varStr.p), records[i].varStr.len);
             } else {
                 std::cout << "(empty)";

@@ -1,22 +1,16 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include <H5Cpp.h>
-#include <vector>
-#include <string>
+#include <hdf5.h>
 
-using namespace H5;
+#define FILENAME "compound_example.h5"
+#define DATASETNAME "CompoundData"
+#define NUM_RECORDS 1000
 
-// Constants
-extern const H5std_string FILE_NAME;
-extern const H5std_string DATASET_NAME;
-extern const H5std_string ATTRIBUTE_NAME;
-
-// Define the structure for the compound datatype
 struct Record {
     uint64_t recordId;
     char fixedStr[10];
-    hvl_t varStr;           // Variable-length string (hvl_t for compatibility)
+    hvl_t varStr; // Variable-length string
     float floatVal;
     double doubleVal;
     int8_t int8_Val;
@@ -27,10 +21,7 @@ struct Record {
     uint32_t uint32_Val;
     int64_t int64_Val;
     uint64_t uint64_Val;
-    uint64_t bitfieldVal;   // Bitfield with bit offset = 7, precision 57
+    uint64_t bitfieldVal; // Bitfield: offset 7, precision 57
 };
-
-// Function to create the compound type
-CompType createCompoundType();
 
 #endif // COMMON_H
