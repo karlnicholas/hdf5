@@ -33,4 +33,4 @@ struct Record {
 // Function to create the compound type
 CompType createCompoundType();
 
-#endif // COMPOUNDORIG_COMMON_H
+#endif // COMMON_H
